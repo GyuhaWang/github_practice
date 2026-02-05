@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+    <body>
+        <section>
+            <h2>장바구니 내용</h2>
+            <pre id="cart-contents"></pre>
+            <button onClick="addToCart({id: 1, name: '상품 A', price: 1000})">장바구니에 추가</button>
+            <h1>
+                <%= @product[:title] %>
+                </h1><h3> <span>商品コード<span><%= @product[:id] %>                </span></span> </h3>
+                <div>
+                    <div class="product_img_box">
+                        <img src="/product-<%= @product[:id] %>.avif"
+                          alt="product" class="product_img"/>
+                    </div>
+                    <div>
+                        <div>
+                                サイズ
+                        </div>
+                        <div>
+                        </div>
+                            数量を選択
+                    </div>
+                    <div>
+                            期間限定価格
+                            12,590円
+                    </div>
+                    <div>
+                        <button >カートに入れる</button>
+                    </div>
+                    <div>
+                    </section>
+
+                    <script>
+
+                        function getCookie(name) {
+                        const value = `; ${document.cookie}`;
+                        const parts = value.split(`; ${name}=`);
+                        if (parts.length === 2) return parts.pop().split(';').shift();
+                        return null;
+                        }
+
+                        function setCookie(name, value, days) {
+
+                        let expires = "";
+                        if (days) {
+                        const date = new Date();
+                        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                        expires = "; expires=" + date.toUTCString();
+                        }
+                        // SameSite=Lax 설정을 추가하는 것이 좋습니다.
+
+                        document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Lax";
+                        }
+
+                        function addToCart(product) {
+
+                        let cart = getCookie('cart');
+
+                        cart = cart ? JSON.parse(decodeURIComponent(cart)) : [];
+
+                        const existingProductIndex = cart.findIndex(item => item.id === product.id);
+
+                        if (existingProductIndex > -1) {
+
+                        cart[existingProductIndex].quantity += 1;
+                        } else {
+
+                        product.quantity = 1;
+
+                        cart.push(product);
+                        }
+
+                        setCookie('cart', encodeURIComponent(JSON.stringify(cart)), 7); // 7일간 유지
+
+                        updateCartDisplay();
+                        alert(`${product.name}이(가) 장바구니에 추가되었습니다.`);
+                        }
+
+                        function updateCartDisplay() {
+                        const cartContentsEl = document.getElementById('cart-contents');
+                        const cart = getCookie('cart');
+                        if (cart) {
+                        // 읽어온 쿠키는 다시 디코딩 및 파싱하여 보기 좋게 출력
+                        cartContentsEl.textContent = JSON.stringify(JSON.parse(decodeURIComponent(cart)), null, 2);
+                        } else {
+                        cartContentsEl.textContent = '장바구니가 비어 있습니다.';
+                        }
+                        }
+
+                        // 페이지 로드 시 장바구니 내용 표시
+                        document.addEventListener('DOMContentLoaded', updateCartDisplay);
+
+                </script>
+
+            </body>
+        </html>

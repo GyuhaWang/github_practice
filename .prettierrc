@@ -1,0 +1,5 @@
+{
+  "plugins": ["prettier-plugin-erb"],
+  "erb.singleQuote": false,
+  "erb.formatHtml": true
+}

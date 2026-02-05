@@ -1,0 +1,39 @@
+<div id="product-area">
+    <button id="prev">prev</button>
+
+    <ul id="product-list"></ul>
+
+    <button id="next">next</button>
+</div>
+<script>
+
+    fetch("/products?timeSale=true")
+    .then(response => response.json())
+    .then(data => {
+    const area = document.getElementById("product-list");
+
+    area.innerHTML = data.map(p => `
+<li>
+    <a href="/products/${p.id}" class="product_link">
+        <div class="product_box">
+            <div class="product_img_box">
+                <img src="/product-${p.id}.avif" alt="product" class="product_img"/>
+            </div>
+
+            <p class="product_title">${p.title}</p>
+
+            <p class="time_sale">期間限定価格</p>
+
+            <span class="product_price">
+                    ${Number(p.price).toLocaleString()}
+                <span class="currency">円</span>
+            </span>
+        </div>
+    </a>
+</li>
+    `).join("");
+
+    })
+    .catch(err => console.error(err));
+
+</script>

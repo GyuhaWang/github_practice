@@ -1,0 +1,45 @@
+.sub_nav_bar {
+  display: flex;
+  gap: 4px;
+  margin: 12px 0px;
+}
+.category_button {
+  width: 10%;
+}
+.category_button > button {
+  font-weight: 700;
+  width: 86px;
+  height: 36px;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  white-space: nowrap;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #e7e7e7;
+  border-radius: 4px;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.long_button {
+  display: flex;
+  flex-grow: 1;
+}
+
+.long_button > button {
+  font-weight: 700;
+  text-align: left;
+  width: 100%;
+  white-space: nowrap;
+  color: #333;
+  background-color: #fff;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+}
+.vertical_line {
+  border-left: 1px solid #e7e7e7;
+
+  margin: 0 10px;
+}

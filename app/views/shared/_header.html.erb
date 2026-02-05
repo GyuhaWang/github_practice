@@ -1,0 +1,23 @@
+<nav class="nav_bar">
+    <div class="logo_button">
+        <%= link_to root_path, class: "logo" do %>
+            <%= image_tag("logo.svg", alt: "Logo") %>
+        <% end %>
+        <div class="title">
+            <p>ニトリ公式通販</p>
+            <p class="text-lg bold">ニトリネット</p>
+        </div>
+    </div>
+    <div class="<%= request.path.start_with?('/users') ? 'search_bar invisible': 'search_bar' %>    ">
+    <div class="search_icon">
+        <%= image_tag("searchimg.svg", alt: "searchimg") %>
+    </div>
+    <div class="search_input">
+        <input placeholder="何をお探しですか？"/>
+    </div>
+    <div class="camera_button">
+        <%= image_tag("scanandcamera.svg", alt: "scanandcamera") %>
+    </div>
+    </div>    <div class="options">        <div><%= image_tag("support.svg", alt: "support") %>    </div>        <div><%= image_tag("support.svg", alt: "support") %>    </div>        <div><%= image_tag("support.svg", alt: "support") %>    </div>    </div>
+
+</nav>

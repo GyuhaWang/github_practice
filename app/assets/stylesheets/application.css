@@ -1,0 +1,14 @@
+@import "styles";
+@import "nav_bar";
+@import "sub_nav_bar";
+@import "auth.css";
+@import "product";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 12px 40px;
+}
